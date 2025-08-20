@@ -9,9 +9,16 @@ return {
         cmd = 'pyright',
         stdin = false,
       }
+      -- lint.linters.pyright = {
+      --   name = 'pyright',
+      --   cmd = 'basedpyright',
+      --   stdin = false,
+      --   --ignore_exitcode = true,
+      -- }
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
-        python = { 'pyright', 'typos' },
+        --  markdown = { 'markdownlint' },
+        python = { 'typos' },
+        rust = { 'typos', 'clippy' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
