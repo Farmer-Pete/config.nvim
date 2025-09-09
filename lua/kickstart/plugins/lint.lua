@@ -5,10 +5,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
-      lint.linters.pyright = {
-        cmd = 'pyright',
-        stdin = false,
-      }
       -- lint.linters.pyright = {
       --   name = 'pyright',
       --   cmd = 'basedpyright',
