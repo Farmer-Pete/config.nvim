@@ -655,6 +655,16 @@ require('lazy').setup({
         },
       }
 
+      -- Add this in the LSP config function, after the capabilities line
+
+      -- Configure LSP float windows to have borders
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or 'rounded'
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
+
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -1038,6 +1048,9 @@ require('lazy').setup({
     },
   },
 })
+
+-- Neovide options
+vim.o.guifont = 'FiraCode Nerd Font:h10'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
