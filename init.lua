@@ -110,6 +110,24 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+-- Show current directory and file path in the title
+vim.o.title = true
+local function update_titlestring()
+  local cwd_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+  local relative_path = vim.fn.expand('%:.')
+  if relative_path == '' then
+    vim.o.titlestring = cwd_name
+    return
+  end
+  vim.o.titlestring = string.format('%s - %s', cwd_name, relative_path)
+end
+
+update_titlestring()
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter', 'BufFilePost', 'DirChanged' }, {
+  callback = update_titlestring,
+})
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
