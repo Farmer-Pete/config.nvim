@@ -1,5 +1,7 @@
 return {
-  'ggandor/leap.nvim',
+  -- Upstream was nuked from GitHub and moved to Codeberg (2026), so pin the new URL.
+  'andyg/leap.nvim',
+  url = 'https://codeberg.org/andyg/leap.nvim.git',
   opts = {
     -- Highly recommended: define a preview filter to reduce visual noise and the blinking effect after the first keypress (:h leap.opts.preview_filter). You can still target any visible positions if needed, but you can define what is considered an exceptional case.
     -- Exclude whitespace and the middle of alphabetic words from preview:
